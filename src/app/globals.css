@@ -1,26 +1,213 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-inter);
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Severity Tokens */
+  --color-critical: var(--critical);
+  --color-high: var(--high);
+  --color-medium: var(--medium);
+  --color-low: var(--low);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* =========================
+   LIGHT MODE
+========================= */
+
+:root {
+  --radius: 0.625rem;
+
+  /* Base Surfaces */
+  --background: #F5F5F5;
+  --foreground: #111111;
+
+  --card: #FFFFFF;
+  --card-foreground: #111111;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #111111;
+
+  /* Primary Accent (Teal) */
+  --primary: #0CC8A8;
+  --primary-foreground: #FFFFFF;
+
+  --accent: #0CC8A8;
+  --accent-foreground: #FFFFFF;
+
+  /* Secondary / Muted */
+  --secondary: #F0F0F0;
+  --secondary-foreground: #111111;
+
+  --muted: #EAEAEA;
+  --muted-foreground: #666666;
+
+  /* Borders & Inputs */
+  --border: #E5E5E5;
+  --input: #FFFFFF;
+  --ring: #0CC8A8;
+
+  /* Destructive */
+  --destructive: #EF4444;
+
+  /* Severity Colors (Fixed Across Themes) */
+  --critical: #EF4444;
+  --high: #F97316;
+  --medium: #FACC15;
+  --low: #22C55E;
+
+  /* Sidebar */
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #111111;
+  --sidebar-primary: #0CC8A8;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #F0F0F0;
+  --sidebar-accent-foreground: #111111;
+  --sidebar-border: #E5E5E5;
+  --sidebar-ring: #0CC8A8;
+}
+
+/* =========================
+   DARK MODE
+========================= */
+
+.dark {
+  /* Base Surfaces */
+  --background: #0F0F0F;
+  --foreground: #F5F5F5;
+
+  --card: #1A1A1A;
+  --card-foreground: #F5F5F5;
+
+  --popover: #1A1A1A;
+  --popover-foreground: #F5F5F5;
+
+  /* Primary Accent stays same */
+  --primary: #0CC8A8;
+  --primary-foreground: #000000;
+
+  --accent: #0CC8A8;
+  --accent-foreground: #000000;
+
+  /* Secondary / Muted */
+  --secondary: #242424;
+  --secondary-foreground: #F5F5F5;
+
+  --muted: #2A2A2A;
+  --muted-foreground: #A0A0A0;
+
+  /* Borders & Inputs */
+  --border: #2A2A2A;
+  --input: #2A2A2A;
+  --ring: #0CC8A8;
+
+  /* Destructive */
+  --destructive: #EF4444;
+
+  /* Severity Colors (UNCHANGED) */
+  --critical: #EF4444;
+  --high: #F97316;
+  --medium: #FACC15;
+  --low: #22C55E;
+
+  /* Sidebar */
+  --sidebar: #141414;
+  --sidebar-foreground: #F5F5F5;
+  --sidebar-primary: #0CC8A8;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #1F1F1F;
+  --sidebar-accent-foreground: #F5F5F5;
+  --sidebar-border: #2A2A2A;
+  --sidebar-ring: #0CC8A8;
+}
+
+/* =========================
+   BASE LAYER
+========================= */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.login-background {
+    background-color: #0B0F14;
+    /* slightly cooler dark base */
+
+    background-image:
+      radial-gradient(1000px circle at 15% 25%,
+        rgba(12, 200, 168, 0.28),
+        transparent 60%),
+      radial-gradient(900px circle at 85% 85%,
+        rgba(255, 120, 0, 0.40),
+        transparent 55%),
+      radial-gradient(700px circle at 75% 95%,
+        rgba(255, 0, 60, 0.30),
+        transparent 65%),
+      linear-gradient(135deg,
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.3));
+
+    background-blend-mode: screen, screen, screen, normal;
+
+}
+
+.login-background {
+  @apply bg-background;
+}
+
+.dark .login-background {
+  background-color: #0B0F14;
+  background-image:
+    radial-gradient(...);
 }
