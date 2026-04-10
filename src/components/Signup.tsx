@@ -65,7 +65,7 @@ export function Signup() {
 
             <p className="text-sm text-center text-muted-foreground mb-6">
               Already have an account?{" "}
-              <Link href="#" className="text-primary font-medium underline">
+              <Link href="/login" className="text-primary font-medium underline">
                 Log in
               </Link>
             </p>
@@ -74,7 +74,7 @@ export function Signup() {
               <input
                 type="text"
                 placeholder="First name*"
-                className="w-full bg-input border border-border rounded-[8px] px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full bg-input border border-border rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               />
 
               <input
@@ -101,7 +101,7 @@ export function Signup() {
               <div className="flex items-start gap-2 text-xs text-muted-foreground">
                 <input type="checkbox" className="mt-1 accent-primary" />
                 <p>
-                  I agree to Aps’s{" "}
+                  I agree to Saas Dashboard{" "}
                   <Link href="#" className="text-blue-700 underline">
                     Terms & Conditions
                   </Link>{" "}
@@ -112,12 +112,15 @@ export function Signup() {
                 </p>
               </div>
 
+    <Link href="/dashboard" className="text-primary font-medium underline">
               <button
                 type="submit"
                 className="w-full bg-primary text-primary-foreground py-3 rounded-full font-medium hover:opacity-90 transition"
-              >
+                >
+
                 Create account
               </button>
+                </Link>
             </form>
 
             {/* Social Buttons */}
